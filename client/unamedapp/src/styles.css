@@ -1911,7 +1911,7 @@ header .caption {
     position: absolute;
 }
 /* singnature */
-.signature{background: url(../src/assets/images/products/sign_bg.jpg)no-repeat;background-size: 100% 100%;height: 360px;padding: 0 18px 18px;margin-top:100px;}
+.signature{background: url(../src/assets/images/sign_bg.jpg)no-repeat;background-size: 100% 100%;height: 360px;padding: 0 18px 18px;margin-top:100px;}
 .shape {
     background: linear-gradient(#ad021d, #c72937) repeat scroll 0 0;
     height: 116px;
@@ -1953,7 +1953,7 @@ header .caption {
 
 /* Second Secition */
 /* Classic */
-.classic{background: url(../src/assets/images/products/classic_bg.jpg)no-repeat;background-size: 100% 100%;margin-top:25px;height:360px;position:relative;overflow:hidden;}
+.classic{background: url(../src/assets/images/classic_bg.jpg)no-repeat;background-size: 100% 100%;margin-top:25px;height:360px;position:relative;overflow:hidden;}
 .classic_btn {
     background: #dc9e15 none repeat scroll 0 0;
     color: #fff;
@@ -2200,9 +2200,9 @@ header .caption {
     height: 190px;
     padding: 75px 0 40px;
 }
-.menu{background: url(../src/assets/images/products/menu_bg.jpg)no-repeat;background-size: 100% 100%;}
-.drinks{background: url(../src/assets/images/products/drinks_bg.jpg)no-repeat;background-size: 100% 100%;}
-.sides{background: url(../src/assets/images/products/sides_bg.jpg)no-repeat;background-size: 100% 100%;}
+.menu{background: url(../src/assets/images/menu_bg.jpg)no-repeat;background-size: 100% 100%;}
+.drinks{background: url(../src/assets/images/drinks_bg.jpg)no-repeat;background-size: 100% 100%;}
+.sides{background: url(../src/assets/images/sides_bg.jpg)no-repeat;background-size: 100% 100%;}
 .inner_content {
     display: block;
     margin: 0 auto;
