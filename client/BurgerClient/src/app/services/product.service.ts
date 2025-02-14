@@ -8,7 +8,7 @@ import { CarouselItem } from '../models/carousel-item';
   providedIn: 'root'
 })
 export class ProductService {
-  private baseUrl = 'localhost:8080/api/products/';
+  private baseUrl = 'localhost:8080/api/products';
 
   constructor(private httpClient: HttpClient) {
 

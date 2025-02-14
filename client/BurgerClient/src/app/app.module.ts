@@ -11,11 +11,17 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import { Route, RouterModule, Routes } from '@angular/router';
 import { ProductService } from './services/product.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductsComponent } from './products/products.component';
+import { ProductViewComponent } from './product-view/product-view.component';
 
 const routes : Routes=[
+  {path: '', redirectTo : 'home', pathMatch: 'full'},
   {path:'home', component: HomeComponent},
   {path:'login', component: LoginComponent},
-  {path:'signup', component: SignupComponent}
+  {path:'signup', component: SignupComponent},
+  {path:'products', component: ProductsComponent},
+  {path:'product-view/:productId', component: ProductViewComponent},
+  {path:'product-view/category/:category', component: ProductViewComponent}
 ];
 
 @NgModule({
@@ -27,6 +33,8 @@ const routes : Routes=[
     FooterComponent,
     HeaderComponent,
     SideMenuComponent,
+    ProductsComponent,
+    ProductViewComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

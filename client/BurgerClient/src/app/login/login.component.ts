@@ -7,7 +7,7 @@ import { LoginCredentialsDto } from '../models/login-credentials-dto';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./assets/css/auth_style.css']
+  styleUrls: ['../../assets/css/auth_style.css']
 })
 export class LoginComponent implements OnInit{
   loginFormGroup!: FormGroup;

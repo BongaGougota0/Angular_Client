@@ -1,0 +1,40 @@
+<body>
+    <div class="product-container">
+        <div class="product-gallery">
+            <div class="main-image">
+                <img src="{{productView.productUrl}}" alt="Product Main Image" id="mainImage">
+            </div>
+        </div>
+
+        <div class="product-info">
+            <div class="product-category">{{productView.productCategory}}</div>
+            <h1 class="product-title">{{productView.productName}}</h1>
+            <div class="product-price">{{productView.productPrice}}</div>
+            <p class="product-description">
+                {{productView.productDescription}}
+            </p>
+
+            <div class="product-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Availability:</span>
+                    <span class="meta-value">In Stock</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Preparation:</span>
+                    <span class="meta-value">10-15 minutes</span>
+                </div>
+            </div>
+
+            <div class="quantity-selector">
+                <button class="quantity-btn" onclick="updateQuantity(-1)">-</button>
+                <input type="number" class="quantity-input" value="1" min="1" max="10" id="quantity">
+                <button class="quantity-btn" onclick="updateQuantity(1)">+</button>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+                <button class="btn btn-wishlist" onclick="addToWishlist()">♥</button>
+            </div>
+        </div>
+    </div>
+</body>
