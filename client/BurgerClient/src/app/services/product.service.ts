@@ -22,9 +22,9 @@ export class ProductService {
     return this.httpClient.get<Product>(`${this.baseUrl}/${productId}`)
   }
 
-  // updateProduct(updateProduct: Product): Observable<Product>{
-  //   return this.httpClient.put<Product>(`${this.baseUrl}/update`, updateProduct)
-  // }
+  getProductsByCategory(categoryName: string): Observable<Product[]>{
+    return this.httpClient.get<Product[]>(`${this.baseUrl}/category?category=${categoryName}`)
+  }
 
   getUItemplateData(): Observable<Record<string, CarouselItem[]>>{
     return this.httpClient.get<Record<string, CarouselItem[]>>(`${this.baseUrl}/ui-data`);
