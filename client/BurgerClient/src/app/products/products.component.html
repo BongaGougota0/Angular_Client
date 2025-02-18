@@ -10,11 +10,11 @@
          <div class="product-card">
             <a href="/product/{{product.productId}}" class="product-link">
                 <div class="product-image-container">
-                    <img src="{{product.image}}" alt="{{product.name}}" class="product-image">
+                    <img src="{{product.productImage}}" alt="{{product.productName}}" class="product-image">
                 </div>
                 <div class="product-details">
-                    <h3 class="product-title">{{product.name}}</h3>
-                    <div class="product-price">{{product.price.toFixed(2)}}</div>
+                    <h3 class="product-title">{{product.productName}}</h3>
+                    <div class="product-price">{{product.productPrice}}</div>
                     <div class="product-actions">
                         <button class="btn btn-cart" onclick="addToCart(product.productId, event)">
                             Add to Cart

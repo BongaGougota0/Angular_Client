@@ -8,7 +8,7 @@ import { SignupComponent } from './signup/signup.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
-import { Route, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ProductService } from './services/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './products/products.component';
@@ -21,7 +21,6 @@ const routes : Routes=[
   {path:'signup', component: SignupComponent},
   {path:'products', component: ProductsComponent},
   {path:'product-view/:productId', component: ProductViewComponent},
-  {path:'product-view/category/:category', component: ProductViewComponent}
 ];
 
 @NgModule({

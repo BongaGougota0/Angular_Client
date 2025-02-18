@@ -146,26 +146,32 @@
                 <div class="row forth_sec">
                     <div class="col-sm-4">
                         <div class="menu">
-                            <div class="inner_content">
-                                <span class="flaticon flaticon-burger"></span>
-                                <h2>menu</h2>
-                            </div>
+                            <a (click)="viewProductsByCategory('menu')">
+                                <div class="inner_content">
+                                    <span class="flaticon flaticon-burger"></span>
+                                    <h2>menu</h2>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="drinks">
-                            <div class="inner_content">
-                                <span class="flaticon flaticon-drink"></span>
-                                <h2>drinks</h2>
-                            </div>
+                            <a (click)="viewProductsByCategory('drinks')">
+                                <div class="inner_content">
+                                    <span class="flaticon flaticon-drink"></span>
+                                    <h2>drinks</h2>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="sides">
-                            <div class="inner_content">
-                                <span class="flaticon flaticon-food"></span>
-                                <h2>sides</h2>
-                            </div>
+                            <a (click)="viewProductsByCategory('SNACKS')" class="">
+                                <div class="inner_content">
+                                    <span class="flaticon flaticon-food"></span>
+                                    <h2>sides</h2>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div><!-- forth section end -->
