@@ -12,6 +12,7 @@ import { ProductService } from './services/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './products/products.component';
 import { ProductViewComponent } from './product-view/product-view.component';
+import { CategoryViewComponent } from './category-view/category-view.component';
 
 const routes : Routes=[
   {path: '', redirectTo : 'home', pathMatch: 'full'},
@@ -20,7 +21,7 @@ const routes : Routes=[
   {path:'signup', component: SignupComponent},
   {path:'products', component: ProductsComponent},
   {path:'product/:productId', component: ProductViewComponent},
-  {path:'products/:category', component: ProductsComponent}
+  {path:'products/:category', component: CategoryViewComponent}
 ];
 
 @NgModule({
@@ -34,6 +35,7 @@ const routes : Routes=[
     SideMenuComponent,
     ProductsComponent,
     ProductViewComponent,
+    CategoryViewComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

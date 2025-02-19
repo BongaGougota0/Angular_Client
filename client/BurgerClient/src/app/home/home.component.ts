@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit{
   }
 
   viewProductsByCategory(categoryName: string){
-    this.router.navigate([`api/products?category=${categoryName}`])
+    this.router.navigate([`/products/${categoryName}`])
   }
   
 }
