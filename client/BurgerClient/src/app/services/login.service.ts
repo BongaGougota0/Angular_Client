@@ -8,7 +8,7 @@ import { ResponseDto } from '../models/response-dto';
   providedIn: 'root'
 })
 export class LoginService {
-  private loginPost = 'localhost:8080/api/auth/login';
+  private loginPost = 'http://localhost:8080/api/auth/login';
 
   constructor(private http: HttpClient) {
 

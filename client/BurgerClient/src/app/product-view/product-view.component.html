@@ -2,16 +2,16 @@
     <div class="product-container">
         <div class="product-gallery">
             <div class="main-image">
-                <img src="{{productView.productUrl}}" alt="Product Main Image" id="mainImage">
+                <img src="{{productView.imageUrl}}" alt="Product Main Image" id="mainImage">
             </div>
         </div>
 
         <div class="product-info">
-            <div class="product-category">{{productView.productCategory}}</div>
-            <h1 class="product-title">{{productView.productName}}</h1>
-            <div class="product-price">{{productView.productPrice}}</div>
+            <div class="product-category">{{productView.category}}</div>
+            <h1 class="product-title">{{productView.name}}</h1>
+            <div class="product-price">{{productView.unitPrice}}</div>
             <p class="product-description">
-                {{productView.productDescription}}
+                {{productView.description}}
             </p>
 
             <div class="product-meta">
