@@ -9,7 +9,7 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./products.component.css']
 })
 export class CategoryViewComponent implements OnInit{
-  private products!: Product[];
+  public products?: Product[] = [];
   private categoryName!: string;
 
   constructor(private router: Router,

@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products</title>
 </head>
+<app-header></app-header>
 <body>
-    <div class="products-grid" *ngFor="let product of products">
-         <div class="product-card">
+    <div class="products-grid">
+         <div class="product-card" *ngFor="let product of products">
             <a href="/product/{{product.productId}}" class="product-link">
                 <div class="product-image-container">
                     <img src="{{product.imageUrl}}" alt="{{product.name}}" class="product-image">
@@ -28,4 +29,5 @@
          </div>
     </div>
 </body>
+<app-footer></app-footer>
 </html>
