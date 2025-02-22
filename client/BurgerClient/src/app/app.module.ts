@@ -35,12 +35,16 @@ const routes : Routes=[
     SideMenuComponent,
     ProductsComponent,
     ProductViewComponent,
-    CategoryViewComponent
+    CategoryViewComponent,
+    SideMenuComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
     HttpClientModule,
     BrowserModule
+  ],
+  exports: [
+    SideMenuComponent
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]

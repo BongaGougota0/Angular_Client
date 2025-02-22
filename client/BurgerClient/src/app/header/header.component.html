@@ -40,23 +40,10 @@
                 <a class="navbar-brand" href="#"><img src="/assets/images/logo.png" class="logo" alt=""></a>
             </div>
             <!-- End Header Navigation -->
-        </div>   
+        </div> 
 
         <!-- Start Side Menu -->
-        <div class="side">
-            <a id="side_menu" class="close-side"><i class="fa fa-times">hh</i></a>
-            <div class="widget">
-                <h6 class="title">Menu</h6>
-                <ul class="link">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Drinks</a></li>
-                    <li><a href="#">Burgers</a></li>
-                    <li><a href="#">Pizza</a></li>
-                    <li><a href="#">Beer</a></li>
-                </ul>
-            </div>
-        </div>
+        <app-side-menu></app-side-menu>
         <!-- End Side Menu -->
     </nav>
 
@@ -85,15 +72,4 @@
         </div><!-- Container end -->
         <p class="caption">*Limited Time Only</p>
     </header><!-- Header end -->
-    <script type="text/javascript">
-       const sideMenu = document.querySelector('#side_menu');
-        if (sideMenu) {
-            sideMenu.addEventListener('click', () => {
-                sideMenu.classList.remove('close-side');
-                sideMenu.classList.add('on-side');
-                console.log('Side menu is clicked!');
-            });
-        } else {
-            console.error('Side menu element not found.');
-        }
-    </script>
+</body>
