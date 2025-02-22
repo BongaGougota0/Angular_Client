@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './products/products.component';
 import { ProductViewComponent } from './product-view/product-view.component';
 import { CategoryViewComponent } from './category-view/category-view.component';
+import { FormsModule } from '@angular/forms';
 
 const routes : Routes=[
   {path: '', redirectTo : 'home', pathMatch: 'full'},
@@ -41,7 +42,8 @@ const routes : Routes=[
   imports: [
     RouterModule.forRoot(routes),
     HttpClientModule,
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   exports: [
     SideMenuComponent

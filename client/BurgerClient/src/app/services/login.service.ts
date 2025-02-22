@@ -2,19 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginCredentialsDto } from '../models/login-credentials-dto';
 import { Observable } from 'rxjs';
-import { ResponseDto } from '../models/response-dto';
+import { AuthResponseDto } from '../models/auth-response-dto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private loginPost = 'http://localhost:8080/api/auth/login';
+  private loginPost = 'http://localhost:8080/api';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) {}
 
-   }
-
-   login(loginCredentials: LoginCredentialsDto): Observable<ResponseDto>{
-    return this.http.post<ResponseDto>(`${this.loginPost}`, loginCredentials);
+   login(loginCredentials: LoginCredentialsDto): Observable<AuthResponseDto>{
+    return this.http.post<AuthResponseDto>(`${this.loginPost}/authenticate`, loginCredentials);
    }
 }

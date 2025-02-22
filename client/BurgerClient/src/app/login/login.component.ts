@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { LoginService } from '../services/login.service';
 import { ResponseDto } from '../models/response-dto';
-import { LoginCredentialsDto } from '../models/login-credentials-dto';
+import { AuthResponseDto } from '../models/auth-response-dto';
+import { DataStorageServiceService } from '../services/data-storage-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,28 +11,31 @@ import { LoginCredentialsDto } from '../models/login-credentials-dto';
   styleUrls: ['../../assets/css/auth_style.css']
 })
 export class LoginComponent implements OnInit{
-  loginFormGroup!: FormGroup;
+  public loginFormGroup: any = {
+    email: null,
+    password: null
+  };
   responseDto!: ResponseDto;
 
-  constructor(private formGroupBuilder: FormBuilder,private loginService: LoginService){}
+  constructor(private loginService: LoginService,
+    private dataStorageService: DataStorageServiceService, private route : Router
+  ){}
 
-  ngOnInit(): void {
-    this.loginFormGroup = this.formGroupBuilder.group({
-      loginDetails : this.formGroupBuilder.group({
-        email: [''],
-        username: [''],
-        password: ['']
-      })
-    })
-  }
+  ngOnInit(): void {}
 
   onSubmit(){
-    const loginData = new LoginCredentialsDto(
-      this.loginFormGroup.get('email')?.value.email,
-      this.loginFormGroup.get('username')?.value.username, 
-      this.loginFormGroup.get('password')?.value.password);
-    this.loginService.login(loginData).subscribe(
-      data => this.responseDto = data
+    const {email, password} = this.loginFormGroup;
+    this.loginService.login({email, password}).subscribe(
+      {
+        next: (resp : AuthResponseDto) => {
+          this.dataStorageService.setUserData(resp);
+          //Thereafter ping server with authenticated route.
+          this.route.navigate(['products']);
+        },
+        error: err => {
+          console.log(err);
+        }
+      }
     )
   }
 
