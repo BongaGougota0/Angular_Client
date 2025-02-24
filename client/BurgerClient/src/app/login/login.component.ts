@@ -1,42 +1,54 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { ResponseDto } from '../models/response-dto';
-import { AuthResponseDto } from '../models/auth-response-dto';
 import { DataStorageServiceService } from '../services/data-storage-service.service';
 import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['../../assets/css/auth_style.css']
 })
-export class LoginComponent implements OnInit{
-  public loginFormGroup: any = {
-    email: null,
-    password: null
+export class LoginComponent implements OnInit {
+  public loginData = {
+    email: '',
+    password: ''
   };
+
   responseDto!: ResponseDto;
 
-  constructor(private loginService: LoginService,
-    private dataStorageService: DataStorageServiceService, private route : Router
-  ){}
+  constructor(
+    private loginService: LoginService,
+    private dataStorageService: DataStorageServiceService, 
+    private route: Router
+  ) {}
 
-  ngOnInit(): void {}
-
-  onSubmit(){
-    const {email, password} = this.loginFormGroup;
-    this.loginService.login({email, password}).subscribe(
-      {
-        next: (resp : AuthResponseDto) => {
-          this.dataStorageService.setUserData(resp);
-          //Thereafter ping server with authenticated route.
-          this.route.navigate(['products']);
-        },
-        error: err => {
-          console.log(err);
-        }
-      }
-    )
+  ngOnInit(): void {
+    // Clear form data on init
+    this.loginData = {
+      email: '',
+      password: ''
+    };
   }
 
+  async onSubmit() {
+    if (!this.loginData.email || !this.loginData.password) {
+      console.log('Form data incomplete:', this.loginData);
+      return;
+    }
+    try {
+      const response = await firstValueFrom(this.loginService.login({
+        email: this.loginData.email,
+        password: this.loginData.password
+      }));
+      if (response.token) {
+        this.dataStorageService.setUserData(response);
+        this.route.navigate(['products']);
+      }
+
+    } catch (error: any) {
+        console.error(error);
+    }
+  }
 }

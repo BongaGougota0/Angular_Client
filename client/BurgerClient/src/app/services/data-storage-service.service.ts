@@ -15,6 +15,5 @@ export class DataStorageServiceService {
     window.sessionStorage.setItem(this.username, JSON.stringify(userData.username));
     window.sessionStorage.setItem(this.token, JSON.stringify(userData.token));
     window.sessionStorage.setItem(this.role, JSON.stringify(userData.role));
-    sessionStorage.setItem(this.token, JSON.stringify(userData.token))
   }
 }
