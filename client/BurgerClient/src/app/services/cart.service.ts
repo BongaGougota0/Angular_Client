@@ -17,6 +17,13 @@ export class CartService {
     localStorage.setItem(this.cartKey, JSON.stringify(this.cart));
    }
 
+  addToCartById(productId : number): void{
+    const product  = this.getCartItem(productId);
+    if(product){
+      this.addToCart(product);
+    }
+  }
+
   addToCart(product: Product): void{
     const existingProduct = this.getCartItem(product.productId);
     if(existingProduct){

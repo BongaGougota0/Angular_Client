@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { ErrorResponse } from '../models/error-response';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-category-view',
@@ -15,6 +16,7 @@ export class CategoryViewComponent implements OnInit{
 
   constructor(private router: Router,
     private route: ActivatedRoute,
+    private cartService: CartService,
     private productsService: ProductService
   ){}
 
@@ -41,9 +43,9 @@ export class CategoryViewComponent implements OnInit{
     })
   }
 
-  addProductToCart(): void
+  addProductToCart(product: Product): void
   {
-
+    this.cartService.addToCart(product);
   }
 
 }

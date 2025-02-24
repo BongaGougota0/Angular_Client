@@ -27,13 +27,13 @@
             </div>
 
             <div class="quantity-selector">
-                <button class="quantity-btn" onclick="updateQuantity(-1)">-</button>
+                <button class="quantity-btn" onclick="updateQuantity()">-</button>
                 <input type="number" class="quantity-input" value="1" min="1" max="10" id="quantity">
-                <button class="quantity-btn" onclick="updateQuantity(1)">+</button>
+                <button class="quantity-btn" onclick="updateQuantity()">+</button>
             </div>
 
             <div class="action-buttons">
-                <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+                <button class="btn btn-primary" onclick="addProductToCart(product.productId)">Add to Cart</button>
                 <button class="btn btn-wishlist" onclick="addToWishlist()">♥</button>
             </div>
         </div>

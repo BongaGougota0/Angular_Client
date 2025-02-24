@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product';
 import { Router } from '@angular/router';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-products',
@@ -11,7 +12,8 @@ import { Router } from '@angular/router';
 export class ProductsComponent implements OnInit {
   public products: Product[] = [];
 
-  constructor(private productsService: ProductService, private router: Router){
+  constructor(private productsService: ProductService,
+    private cartService: CartService, private router: Router){
     
   }
 
@@ -29,9 +31,9 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  addProductToCart(): void
+  addProductToCart(product: Product): void
   {
-
+    this.cartService.addToCart(product);
   }
 
   addProductToWishList(): void

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../services/login.service';
 import { ResponseDto } from '../models/response-dto';
 import { DataStorageServiceService } from '../services/data-storage-service.service';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   responseDto!: ResponseDto;
 
   constructor(
-    private loginService: LoginService,
+    private authService: AuthService,
     private dataStorageService: DataStorageServiceService, 
     private route: Router
   ) {}
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     try {
-      const response = await firstValueFrom(this.loginService.login({
+      const response = await firstValueFrom(this.authService.login({
         email: this.loginData.email,
         password: this.loginData.password
       }));

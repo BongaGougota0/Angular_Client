@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/product';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from '../services/product.service';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-product-view',
@@ -12,7 +13,7 @@ export class ProductViewComponent implements OnInit{
   public productId!: number ;
   public productView!: Product;
 
-  constructor(private productService : ProductService,
+  constructor(private productService : ProductService, private cartService: CartService,
      private route: ActivatedRoute, private router : Router){
 
   }
@@ -37,6 +38,10 @@ export class ProductViewComponent implements OnInit{
         console.log(error);
       }
     });
+  }
+
+  public addProductToCart(productId: number){
+    this.cartService.addToCartById(productId);
   }
 
 }
