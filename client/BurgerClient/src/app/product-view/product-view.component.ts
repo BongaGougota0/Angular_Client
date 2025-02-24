@@ -44,4 +44,8 @@ export class ProductViewComponent implements OnInit{
     this.cartService.addToCartById(productId);
   }
 
+  public addProductToWishList(productId: number){
+
+  }
+
 }

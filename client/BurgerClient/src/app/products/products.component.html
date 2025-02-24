@@ -13,19 +13,19 @@
                 <div class="product-image-container">
                     <img src="{{product.imageUrl}}" alt="{{product.name}}" class="product-image">
                 </div>
-                <div class="product-details">
-                    <h3 class="product-title">{{product.name}}</h3>
-                    <div class="product-price">{{product.unitPrice}}</div>
-                    <div class="product-actions">
-                        <button class="btn btn-cart" onclick="addProductToCart(product)">
-                            Add to Cart
-                        </button>
-                        <button class="btn btn-wishlist" onclick="addToWishlist(product.productId, event)">
-                            ♥
-                        </button>
-                    </div>
-                </div>
             </a>
+            <div class="product-details">
+                <h3 class="product-title">{{product.name}}</h3>
+                <div class="product-price">{{product.unitPrice}}</div>
+                <div class="product-actions">
+                    <button class="btn btn-cart" (click)="addProductToCart(product)">
+                        Add to Cart
+                    </button>
+                    <button class="btn btn-wishlist" (click)="addProductToWishList(product)">
+                        ♥
+                    </button>
+                </div>
+            </div>
          </div>
     </div>
 </body>

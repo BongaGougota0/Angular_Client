@@ -34,6 +34,14 @@ export class CartService {
     this.saveCart();
   }
 
+  getCart(): Product[] {
+    const myCart = localStorage.getItem(this.cartKey);
+    if (myCart) {
+      return JSON.parse(myCart);
+    }
+    return [];
+  }
+
   getCartItem(productId : number): Product | undefined{
    return this.cart.find(p => p.productId === productId);
   }

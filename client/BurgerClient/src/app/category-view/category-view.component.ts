@@ -48,4 +48,8 @@ export class CategoryViewComponent implements OnInit{
     this.cartService.addToCart(product);
   }
 
+  addProductToWishList(product: Product): void
+  {
+    this.cartService.addToCart(product);
+  }
 }

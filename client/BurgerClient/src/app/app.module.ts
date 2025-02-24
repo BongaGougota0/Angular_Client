@@ -14,6 +14,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductViewComponent } from './product-view/product-view.component';
 import { CategoryViewComponent } from './category-view/category-view.component';
 import { FormsModule } from '@angular/forms';
+import { CartComponent } from './cart/cart.component';
 
 const routes : Routes=[
   {path: '', redirectTo : 'home', pathMatch: 'full'},
@@ -22,7 +23,8 @@ const routes : Routes=[
   {path:'signup', component: SignupComponent},
   {path:'products', component: ProductsComponent},
   {path:'product/:productId', component: ProductViewComponent},
-  {path:'products/:category', component: CategoryViewComponent}
+  {path:'products/:category', component: CategoryViewComponent},
+  {path:'order-details', component: CartComponent}
 ];
 
 @NgModule({
@@ -37,7 +39,8 @@ const routes : Routes=[
     ProductsComponent,
     ProductViewComponent,
     CategoryViewComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    CartComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

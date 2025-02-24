@@ -1,1 +1,229 @@
-<p>cart works!</p>
+<body>
+    <div class="tab-container">
+        <div class="tabs">
+            <div (click)="showTab('cart-page')">Shopping Cart</div>
+            <div (click)="showTab('checkout-page')">Checkout</div>
+        </div>
+    </div>
+
+    <!-- Cart Page -->
+    <div id="cart-page" [ngClass]="{'active': activeTabId === 'cart-page'}" *ngIf="activeTabId === 'cart-page'">
+        <div class="cart-container">
+            <div class="cart-header">
+                <h1 class="cart-title">Your Shopping Cart (3)</h1>
+                <div class="cart-steps">
+                    <div class="step active">Cart</div>
+                    <div class="step-divider"></div>
+                    <div class="step">Checkout</div>
+                    <div class="step-divider"></div>
+                    <div class="step">Confirmation</div>
+                </div>
+            </div>
+            
+            <div class="cart-items" *ngFor="let product of products">
+
+                <div class="cart-item">
+                    <img src="/api/placeholder/400/400" alt="Wireless Headphones" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <h3 class="cart-item-title">{{product.description}}</h3>
+                        <p class="cart-item-price">{{product.unitPrice}}</p>
+                        <div class="cart-item-actions">
+                            <div class="quantity-control">
+                                <button (click)="decrementProduct(product.productId)" class="quantity-btn">-</button>
+                                <input type="text" value="{{product.productCount}}" class="quantity-input">
+                                <button (click)="incrementProduct(product.productId)" class="quantity-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span class="summary-label">Subtotal</span>
+                    <span class="summary-value">$1,229.97</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Shipping</span>
+                    <span class="summary-value">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Tax</span>
+                    <span class="summary-value">$98.40</span>
+                </div>
+                <div class="summary-total">
+                    <span class="total-label">Total</span>
+                    <span class="total-value">$1,328.37</span>
+                </div>
+            </div>
+            
+            <div class="cart-actions">
+                <button (click)="continueShopping()" class="continue-shopping">Continue Shopping</button>
+                <button (click)="showTab('checkout-page')" class="checkout-btn" onclick="showTab('checkout-page')">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Page -->
+    <div id="checkout-page" [ngClass]="{'active': activeTabId === 'checkout-page'}" *ngIf="activeTabId === 'checkout-page'">
+        <div class="checkout-container">
+            <div class="checkout-form">
+                <h2 class="form-title">Checkout Information</h2>
+                
+                <div class="form-section">
+                    <h3 class="form-title">Contact Information</h3>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" placeholder="your@email.com">
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-title">Shipping Address</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-input" placeholder="John">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-input" placeholder="Doe">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-input" placeholder="123 Main St">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Apartment, suite, etc. (optional)</label>
+                        <input type="text" class="form-input" placeholder="Apt 4B">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">City</label>
+                            <input type="text" class="form-input" placeholder="New York">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">State/Province</label>
+                            <input type="text" class="form-input" placeholder="NY">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">ZIP/Postal Code</label>
+                            <input type="text" class="form-input" placeholder="10001">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Country</label>
+                            <input type="text" class="form-input" placeholder="United States">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-input" placeholder="+1 (555) 123-4567">
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-title">Payment Method</h3>
+                    <div class="payment-methods">
+                        <div class="payment-method selected">
+                            <img src="/api/placeholder/400/200" alt="Credit Card">
+                            <div>Credit Card</div>
+                        </div>
+                        <div class="payment-method">
+                            <img src="/api/placeholder/400/200" alt="PayPal">
+                            <div>PayPal</div>
+                        </div>
+                        <div class="payment-method">
+                            <img src="/api/placeholder/400/200" alt="Apple Pay">
+                            <div>Apple Pay</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Card Number</label>
+                            <input type="text" class="form-input" placeholder="1234 5678 9012 3456">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Name on Card</label>
+                            <input type="text" class="form-input" placeholder="John Doe">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Expiration Date</label>
+                            <input type="text" class="form-input" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">CVC</label>
+                            <input type="text" class="form-input" placeholder="123">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="terms-checkbox">
+                    <input type="checkbox" id="terms">
+                    <label for="terms" class="terms-label">I agree to the <a href="#" class="terms-link">Terms and Conditions</a> and <a href="#" class="terms-link">Privacy Policy</a></label>
+                </div>
+                
+                <button class="checkout-btn" style="width: 100%;">Complete Order</button>
+            </div>
+            
+            <div class="checkout-summary">
+                <h3 class="form-title">Order Summary</h3>
+                
+                <div class="checkout-items">
+                    <div class="checkout-item">
+                        <img src="/api/placeholder/400/400" alt="Wireless Headphones" class="checkout-item-image">
+                        <div class="checkout-item-details">
+                            <div class="checkout-item-title">Premium Wireless Headphones</div>
+                            <div class="checkout-item-price">$199.99</div>
+                            <div class="checkout-item-quantity">Qty: 1</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checkout-item">
+                        <img src="/api/placeholder/400/400" alt="Smartphone" class="checkout-item-image">
+                        <div class="checkout-item-details">
+                            <div class="checkout-item-title">Smartphone X Pro</div>
+                            <div class="checkout-item-price">$899.99</div>
+                            <div class="checkout-item-quantity">Qty: 1</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checkout-item">
+                        <img src="/api/placeholder/400/400" alt="Smartwatch" class="checkout-item-image">
+                        <div class="checkout-item-details">
+                            <div class="checkout-item-title">Fitness Smartwatch</div>
+                            <div class="checkout-item-price">$129.99</div>
+                            <div class="checkout-item-quantity">Qty: 1</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="summary-row">
+                    <span class="summary-label">Subtotal</span>
+                    <span class="summary-value">$1,229.97</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Shipping</span>
+                    <span class="summary-value">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Tax</span>
+                    <span class="summary-value">$98.40</span>
+                </div>
+                <div class="summary-total">
+                    <span class="total-label">Total</span>
+                    <span class="total-value">$1,328.37</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
