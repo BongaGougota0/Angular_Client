@@ -10,7 +10,7 @@
     <div id="cart-page" [ngClass]="{'active': activeTabId === 'cart-page'}" *ngIf="activeTabId === 'cart-page'">
         <div class="cart-container">
             <div class="cart-header">
-                <h1 class="cart-title">Your Shopping Cart (3)</h1>
+                <h1 class="cart-title">Your Shopping Cart ({{cartQty}})</h1>
                 <div class="cart-steps">
                     <div class="step active">Cart</div>
                     <div class="step-divider"></div>
@@ -26,7 +26,7 @@
                     <img src="/api/placeholder/400/400" alt="Wireless Headphones" class="cart-item-image">
                     <div class="cart-item-details">
                         <h3 class="cart-item-title">{{product.description}}</h3>
-                        <p class="cart-item-price">{{product.unitPrice}}</p>
+                        <p class="cart-item-price">{{product.productPrice}}</p>
                         <div class="cart-item-actions">
                             <div class="quantity-control">
                                 <button (click)="decrementProduct(product.productId)" class="quantity-btn">-</button>
@@ -42,25 +42,25 @@
             <div class="cart-summary">
                 <div class="summary-row">
                     <span class="summary-label">Subtotal</span>
-                    <span class="summary-value">$1,229.97</span>
+                    <span class="summary-value">R {{cartTotal | number:'1.2-2' }}</span>
                 </div>
                 <div class="summary-row">
                     <span class="summary-label">Shipping</span>
-                    <span class="summary-value">$0.00</span>
+                    <span class="summary-value">R {{shipping}}</span>
                 </div>
                 <div class="summary-row">
                     <span class="summary-label">Tax</span>
-                    <span class="summary-value">$98.40</span>
+                    <span class="summary-value">R {{totalInclusiveVAT | number:'1.2-2' }}</span>
                 </div>
                 <div class="summary-total">
                     <span class="total-label">Total</span>
-                    <span class="total-value">$1,328.37</span>
+                    <span class="total-value">R {{subTotal | number:'1.2-2' }}</span>
                 </div>
             </div>
             
             <div class="cart-actions">
                 <button (click)="continueShopping()" class="continue-shopping">Continue Shopping</button>
-                <button (click)="showTab('checkout-page')" class="checkout-btn" onclick="showTab('checkout-page')">Proceed to Checkout</button>
+                <button (click)="showTab('checkout-page')" class="checkout-btn" (click)="showTab('checkout-page')">Proceed to Checkout</button>
             </div>
         </div>
     </div>
@@ -177,50 +177,35 @@
             <div class="checkout-summary">
                 <h3 class="form-title">Order Summary</h3>
                 
-                <div class="checkout-items">
+                <div class="checkout-items" *ngFor="let product of products">
                     <div class="checkout-item">
-                        <img src="/api/placeholder/400/400" alt="Wireless Headphones" class="checkout-item-image">
+                        <img src="{{product.imageUrl}}" alt="" class="checkout-item-image">
                         <div class="checkout-item-details">
-                            <div class="checkout-item-title">Premium Wireless Headphones</div>
-                            <div class="checkout-item-price">$199.99</div>
-                            <div class="checkout-item-quantity">Qty: 1</div>
-                        </div>
-                    </div>
-                    
-                    <div class="checkout-item">
-                        <img src="/api/placeholder/400/400" alt="Smartphone" class="checkout-item-image">
-                        <div class="checkout-item-details">
-                            <div class="checkout-item-title">Smartphone X Pro</div>
-                            <div class="checkout-item-price">$899.99</div>
-                            <div class="checkout-item-quantity">Qty: 1</div>
-                        </div>
-                    </div>
-                    
-                    <div class="checkout-item">
-                        <img src="/api/placeholder/400/400" alt="Smartwatch" class="checkout-item-image">
-                        <div class="checkout-item-details">
-                            <div class="checkout-item-title">Fitness Smartwatch</div>
-                            <div class="checkout-item-price">$129.99</div>
-                            <div class="checkout-item-quantity">Qty: 1</div>
+                            <div class="checkout-item-title">{{product.name}}</div>
+                            <div class="checkout-item-price">{{product.productPrice}}</div>
+                            <div class="checkout-item-quantity">Qty: {{product.productCount}}</div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="summary-row">
                     <span class="summary-label">Subtotal</span>
-                    <span class="summary-value">$1,229.97</span>
+                    <span class="summary-value">R {{cartTotal | number:'1.2-2' }}</span>
                 </div>
                 <div class="summary-row">
                     <span class="summary-label">Shipping</span>
-                    <span class="summary-value">$0.00</span>
+                    <span class="summary-value" *ngIf="cartTotal > 200; else freeShipping">R 0.00</span>
+                    <ng-template #freeShipping>
+                      <span class="summary-value">R {{shipping}}</span>
+                    </ng-template>
                 </div>
                 <div class="summary-row">
                     <span class="summary-label">Tax</span>
-                    <span class="summary-value">$98.40</span>
+                    <span class="summary-value">R {{totalInclusiveVAT | number:'1.2-2' }}</span>
                 </div>
                 <div class="summary-total">
                     <span class="total-label">Total</span>
-                    <span class="total-value">$1,328.37</span>
+                    <span class="total-value">R {{subTotal | number:'1.2-2' }}</span>
                 </div>
             </div>
         </div>

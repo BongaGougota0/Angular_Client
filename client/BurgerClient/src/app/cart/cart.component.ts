@@ -12,6 +12,11 @@ import { ProductService } from '../services/product.service';
 export class CartComponent implements OnInit{
   public products: Product[] = [];
   public activeTabId?: string;
+  public cartTotal: number = 0;
+  public totalInclusiveVAT: number = 0;
+  public shipping: number = 40;
+  public subTotal: number = 0;
+  public cartQty: number = 0;
 
   constructor(private cartService: CartService,
     private productsService : ProductService,
@@ -20,6 +25,7 @@ export class CartComponent implements OnInit{
   ngOnInit(): void {
     this.activeTabId = 'cart-page';
     this.products = this.cartService.getCart();
+    this.calculateCartDetails();
   }
 
   incrementProduct(productId : number){
@@ -28,6 +34,13 @@ export class CartComponent implements OnInit{
 
   decrementProduct(productId : number){
     this.cartService.decrementProductCount(productId);
+  }
+
+  calculateCartDetails(): void{
+    this.cartTotal = this.products.reduce((total, item) => total += Number(item.productPrice) * item.productCount, 0);
+    this.totalInclusiveVAT= this.cartTotal * 0.15;
+    this.subTotal = this.totalInclusiveVAT + this.cartTotal + this.shipping;
+    this.cartQty = this.products.reduce((total, item) => total += item.productCount, 0)
   }
 
   showTab(tabId : string){
