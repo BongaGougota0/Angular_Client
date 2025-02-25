@@ -14,7 +14,7 @@ export class CartComponent implements OnInit{
   public activeTabId?: string;
   public cartTotal: number = 0;
   public totalInclusiveVAT: number = 0;
-  public shipping: number = 40;
+  public shipping: number = 40.00;
   public subTotal: number = 0;
   public cartQty: number = 0;
 
@@ -39,7 +39,12 @@ export class CartComponent implements OnInit{
   calculateCartDetails(): void{
     this.cartTotal = this.products.reduce((total, item) => total += Number(item.productPrice) * item.productCount, 0);
     this.totalInclusiveVAT= this.cartTotal * 0.15;
-    this.subTotal = this.totalInclusiveVAT + this.cartTotal + this.shipping;
+    if(this.cartTotal < 200)
+    {
+      this.subTotal = this.cartTotal + this.totalInclusiveVAT + this.shipping;
+    }else{
+      this.subTotal = this.cartTotal + this.totalInclusiveVAT;
+    }
     this.cartQty = this.products.reduce((total, item) => total += item.productCount, 0)
   }
 

@@ -25,7 +25,7 @@
                 <div class="cart-item">
                     <img src="/api/placeholder/400/400" alt="Wireless Headphones" class="cart-item-image">
                     <div class="cart-item-details">
-                        <h3 class="cart-item-title">{{product.description}}</h3>
+                        <h3 class="cart-item-title">{{product.productDescription}}</h3>
                         <p class="cart-item-price">{{product.productPrice}}</p>
                         <div class="cart-item-actions">
                             <div class="quantity-control">
@@ -46,7 +46,10 @@
                 </div>
                 <div class="summary-row">
                     <span class="summary-label">Shipping</span>
-                    <span class="summary-value">R {{shipping}}</span>
+                    <span class="summary-value" *ngIf="cartTotal > 200; else freeShipping">R 0.00</span>
+                    <ng-template #freeShipping>
+                      <span class="summary-value">R {{shipping | number:'1.2-2' }}</span>
+                    </ng-template>
                 </div>
                 <div class="summary-row">
                     <span class="summary-label">Tax</span>
@@ -181,7 +184,7 @@
                     <div class="checkout-item">
                         <img src="{{product.imageUrl}}" alt="" class="checkout-item-image">
                         <div class="checkout-item-details">
-                            <div class="checkout-item-title">{{product.name}}</div>
+                            <div class="checkout-item-title">{{product.productName}}</div>
                             <div class="checkout-item-price">{{product.productPrice}}</div>
                             <div class="checkout-item-quantity">Qty: {{product.productCount}}</div>
                         </div>

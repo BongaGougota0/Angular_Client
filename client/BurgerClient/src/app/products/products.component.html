@@ -11,11 +11,11 @@
          <div class="product-card" *ngFor="let product of products">
             <a href="/product/{{product.productId}}" class="product-link">
                 <div class="product-image-container">
-                    <img src="{{product.imageUrl}}" alt="{{product.name}}" class="product-image">
+                    <img src="{{product.imageUrl}}" alt="{{product.productName}}" class="product-image">
                 </div>
             </a>
             <div class="product-details">
-                <h3 class="product-title">{{product.name}}</h3>
+                <h3 class="product-title">{{product.productName}}</h3>
                 <div class="product-price">{{product.productPrice}}</div>
                 <div class="product-actions">
                     <button class="btn btn-cart" (click)="addProductToCart(product)">
