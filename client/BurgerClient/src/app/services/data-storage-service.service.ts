@@ -16,4 +16,12 @@ export class DataStorageServiceService {
     window.sessionStorage.setItem(this.token, JSON.stringify(userData.token));
     window.sessionStorage.setItem(this.role, JSON.stringify(userData.role));
   }
+
+  getUserEmail(): string | null{
+    return window.sessionStorage.getItem(this.username);
+  }
+
+  clearAuthData(): void{
+    window.sessionStorage.clear();
+  }
 }

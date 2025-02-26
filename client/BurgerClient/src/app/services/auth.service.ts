@@ -10,6 +10,7 @@ import { RegisterData } from '../models/register-data';
 })
 export class AuthService {
   private base_url = 'http://localhost:8080/api';
+  isLoggedIn = false;
 
   constructor(private http: HttpClient) {}
 
@@ -19,5 +20,13 @@ export class AuthService {
 
    register(registerData : RegisterData): Observable<any>{
     return this.http.post<any>(`${this.base_url}/users/register`, registerData);
+   }
+
+   setAsLoggedIn(): void{
+    this.isLoggedIn = true;
+   }
+
+   logOutUser(): void{
+    this.isLoggedIn = false;
    }
 }

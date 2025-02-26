@@ -6,7 +6,6 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import { SideMenuComponent } from './side-menu/side-menu.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductService } from './services/product.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,6 +14,7 @@ import { ProductViewComponent } from './product-view/product-view.component';
 import { CategoryViewComponent } from './category-view/category-view.component';
 import { FormsModule } from '@angular/forms';
 import { CartComponent } from './cart/cart.component';
+import { NavComponent } from './nav/nav.component';
 
 const routes : Routes=[
   {path: '', redirectTo : 'home', pathMatch: 'full'},
@@ -35,12 +35,11 @@ const routes : Routes=[
     SignupComponent,
     FooterComponent,
     HeaderComponent,
-    SideMenuComponent,
     ProductsComponent,
     ProductViewComponent,
     CategoryViewComponent,
-    SideMenuComponent,
-    CartComponent
+    CartComponent,
+    NavComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -49,7 +48,6 @@ const routes : Routes=[
     FormsModule
   ],
   exports: [
-    SideMenuComponent
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]

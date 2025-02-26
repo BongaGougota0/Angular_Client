@@ -265,7 +265,7 @@ a:hover,a:focus{ text-decoration: none}
 
 /* Header */
 header{
-    background: url('/assets/images/header_bg.jpg')no-repeat;
+    background: #454646 none repeat scroll 0 0;
     background-size: 100% 100%;
     color: #f1f1f1;
     overflow: hidden;}

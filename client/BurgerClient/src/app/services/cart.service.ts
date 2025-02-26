@@ -6,15 +6,25 @@ import { Product } from '../models/product';
 })
 export class CartService {
   private cartKey: string = 'CART';
-  cart: Product[]= [];
+  private wishListKey: string = 'WISHLIST';
+
+  cart: Product[] = [];
+  wishList: Product[] = [];
 
   constructor() {
     const savedCart = localStorage.getItem(this.cartKey);
     this.cart = savedCart ? JSON.parse(savedCart) : [];
+    // Wishlist
+    const savedWishList = localStorage.getItem(this.wishListKey);
+    this.wishList = savedWishList ? JSON.parse(savedWishList) : [];
    }
 
    private saveCart(){
     localStorage.setItem(this.cartKey, JSON.stringify(this.cart));
+   }
+
+   private saveWishList(): void{
+    localStorage.setItem(this.wishListKey, JSON.stringify(this.wishList))
    }
 
   addToCartById(productId : number): void{
@@ -34,10 +44,32 @@ export class CartService {
     this.saveCart();
   }
 
-  getCart(): Product[] {
+  addToWishList(product: Product): void {
+    const existingProduct = this.getWishListProductById(product.productId);
+    if(existingProduct){
+      existingProduct.productCount += 1;
+    }else{
+      this.wishList.push({...product, productCount : 1});
+    }
+    this.saveWishList();
+  }
+
+  getWishListProductById(id: number): Product | undefined{
+    return this.wishList.find(item => item.productId === id);
+  }
+
+  getCart(): Product[]{
     const myCart = localStorage.getItem(this.cartKey);
     if (myCart) {
       return JSON.parse(myCart);
+    }
+    return [];
+  }
+
+  getWishList(): Product[]{
+    const wishList = localStorage.getItem(this.wishListKey);
+    if(wishList){
+      return JSON.parse(wishList);
     }
     return [];
   }

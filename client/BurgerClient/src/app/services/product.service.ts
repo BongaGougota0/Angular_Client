@@ -33,6 +33,10 @@ export class ProductService {
     return this.httpClient.get<Product[]>(`${this.baseUrl}/category?category=${categoryName}`)
   }
 
+  getAllStoreCategories(): Observable<string[]>{
+     return this.httpClient.get<string[]>(`${this.baseUrl}/store-categories`);
+  }
+
   getUItemplateData(): Observable<Record<string, CarouselItem[]>>{
     return this.httpClient.get<Record<string, CarouselItem[]>>(`${this.baseUrl}/ui-data`);
   }
