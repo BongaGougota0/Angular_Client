@@ -40,12 +40,12 @@ export class ProductViewComponent implements OnInit{
     });
   }
 
-  public addProductToCart(productId: number){
-    this.cartService.addToCartById(productId);
+  public addProductToCart(productId: Product){
+    this.cartService.addToCartById(productId.productId);
   }
 
-  public addProductToWishList(productId: number){
-
+  public addProductToWishList(product: Product){
+    this.cartService.addToWishList(product);
   }
 
 }

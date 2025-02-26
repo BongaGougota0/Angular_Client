@@ -15,9 +15,10 @@ export class ProductService {
   constructor(private httpClient: HttpClient, private cartService: CartService) {}
 
   private getHeaders(): HttpHeaders{
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('USER_TOKEN');
     return new HttpHeaders({
-      authorization : `bearer ${token}`
+      'Content-Type': 'application/json',
+      'authorization' : `bearer ${token}`
     })
   }
 
@@ -44,8 +45,8 @@ export class ProductService {
   postOrder(): Observable<ResponseDto>{
     const orderProducts = this.cartService.getCart();
     this.cartService.clearCart();
-    return this.httpClient.post<ResponseDto>(`${this.baseUrl}/place-order`, orderProducts,
-       {headers : this.getHeaders()});
+    return this.httpClient.post<ResponseDto>(`http://localhost:8080/api/orders/order`, orderProducts,
+       {headers : this.getHeaders(), withCredentials: true});
   }
 
 }

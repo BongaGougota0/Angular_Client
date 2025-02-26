@@ -61,10 +61,12 @@ export class CartComponent implements OnInit{
       {
         next: (response) => {
           console.log(`order placed response: ${response}`);
+          this.router.navigate(['products']);
         },
         error: (error) => {
           console.log(error);
+          this.router.navigate(['login'])
         }
-      });
+      }).unsubscribe();
   }
 }
