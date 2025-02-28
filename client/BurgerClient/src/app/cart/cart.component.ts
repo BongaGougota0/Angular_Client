@@ -60,7 +60,6 @@ export class CartComponent implements OnInit{
     this.productsService.postOrder().subscribe(
       {
         next: (response) => {
-          console.log(`order placed response: ${response}`);
           this.router.navigate(['products']);
         },
         error: (error) => {

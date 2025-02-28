@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 import { Product } from '../models/product';
 import { CarouselItem } from '../models/carousel-item';
 import { ResponseDto } from '../models/response-dto';
@@ -16,9 +16,10 @@ export class ProductService {
 
   private getHeaders(): HttpHeaders{
     const token = sessionStorage.getItem('USER_TOKEN');
+    const cleanToken = token ? token.replace(/"/g, '') : '';
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      'authorization' : `bearer ${token}`
+      'authorization' : `bearer ${cleanToken}`
     })
   }
 
@@ -42,11 +43,21 @@ export class ProductService {
     return this.httpClient.get<Record<string, CarouselItem[]>>(`${this.baseUrl}/ui-data`);
   }
 
-  postOrder(): Observable<ResponseDto>{
+  postOrder(): Observable<ResponseDto> {
     const orderProducts = this.cartService.getCart();
-    this.cartService.clearCart();
+    console.log('Attempting to place order with products:', orderProducts);
     return this.httpClient.post<ResponseDto>(`http://localhost:8080/api/orders/order`, orderProducts,
-       {headers : this.getHeaders(), withCredentials: true});
+      {headers: this.getHeaders(), withCredentials: true}
+    ).pipe(
+      tap(response => {
+        console.log('Order response:', response);
+        this.cartService.clearCart();
+      }),
+      catchError(error => {
+        console.error('Order error:', error);
+        return throwError(() => error);
+      })
+    );
   }
 
 }
