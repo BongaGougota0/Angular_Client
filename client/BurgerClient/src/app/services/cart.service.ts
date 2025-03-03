@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,9 @@ import { Product } from '../models/product';
 export class CartService {
   private cartKey: string = 'CART';
   private wishListKey: string = 'WISHLIST';
+  // broadcast for components.
+  cartTotal: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  cartTotalQty: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   cart: Product[] = [];
   wishList: Product[] = [];
@@ -21,6 +25,12 @@ export class CartService {
 
    private saveCart(){
     localStorage.setItem(this.cartKey, JSON.stringify(this.cart));
+
+    const updatedCount = this.getCart().reduce((total, item) => total += item.productCount, 0);
+    this.cartTotal.next(updatedCount);
+
+    const updatedQty = this.getCart().reduce((totalQty, item) => totalQty += item.productCount, 0 );
+    this.cartTotalQty.next(updatedQty);
    }
 
    private saveWishList(): void{
@@ -98,6 +108,7 @@ export class CartService {
       this.saveCart();
     }else{
       this.removeFromCart(productId);
+      this.saveCart();
     }
   }
 

@@ -14,9 +14,7 @@ export class ProductViewComponent implements OnInit{
   public productView!: Product;
 
   constructor(private productService : ProductService, private cartService: CartService,
-     private route: ActivatedRoute, private router : Router){
-
-  }
+     private route: ActivatedRoute, private router : Router){}
 
   ngOnInit(): void 
   {
@@ -41,11 +39,20 @@ export class ProductViewComponent implements OnInit{
   }
 
   public addProductToCart(productId: Product){
-    this.cartService.addToCartById(productId.productId);
+    this.cartService.addToCart(productId);
   }
 
   public addProductToWishList(product: Product){
     this.cartService.addToWishList(product);
+  }
+
+  updateQty(product : Product, increment: boolean): void
+  {
+    if(increment){
+      this.cartService.addToCart(product);
+    }else{
+      this.cartService.decrementProductCount(product.productId);
+    }
   }
 
 }

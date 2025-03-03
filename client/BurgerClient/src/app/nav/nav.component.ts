@@ -17,18 +17,21 @@ export class NavComponent implements OnInit{
 
   constructor(private productsService: ProductService,
      private router: Router,
-     private cartService: CartService
-    , private dataStorageService: DataStorageServiceService){}
+     private cartService: CartService,
+     private dataStorageService: DataStorageServiceService){}
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.getStoreCategories();
 
     if(this.dataStorageService.getUserEmail()){
       this.isLoggedIn = true;
     }
+
+    this.navigationDetails();
   }
 
-  getStoreCategories(): void{
+  getStoreCategories(): void
+  {
     this.productsService.getAllStoreCategories().subscribe(
       {
         next: (categories) => {
@@ -40,14 +43,17 @@ export class NavComponent implements OnInit{
       })
   }
 
-  logOut(): void{
+  logOut(): void
+  {
     this.dataStorageService.clearAuthData();
     this.router.navigate(['/home']);
   }
 
-  navigationDetails(): void{
-     this.cartTotalCount = this.cartService.getCart().reduce((total, item) => total += item.productCount, 0);
-     this.wishListCount = this.cartService.getWishList().reduce((total, item) => total += item.productCount, 0)
+  navigationDetails(): void
+  {
+    //  this.cartTotalCount = this.cartService.getCart().reduce((total, item) => total += item.productCount, 0);
+    //  this.wishListCount = this.cartService.getWishList().reduce((total, item) => total += item.productCount, 0)
+    this.cartService.cartTotalQty.subscribe(totalQty => this.cartTotalCount = totalQty);
   }
 
 }
