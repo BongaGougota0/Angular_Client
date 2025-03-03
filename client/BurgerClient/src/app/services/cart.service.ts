@@ -26,7 +26,7 @@ export class CartService {
    private saveCart(){
     localStorage.setItem(this.cartKey, JSON.stringify(this.cart));
 
-    const updatedCount = this.getCart().reduce((total, item) => total += item.productCount, 0);
+    const updatedCount = this.getCart().reduce((total, item) => total += item.productCount*item.productPrice, 0);
     this.cartTotal.next(updatedCount);
 
     const updatedQty = this.getCart().reduce((totalQty, item) => totalQty += item.productCount, 0 );

@@ -301,7 +301,7 @@ body {
     font-weight: 500;
 }
 
-.checkout-btn {
+.checkout-btn, .switch-tab {
     background-color: #3498db;
     color: white;
     padding: 0.8rem 2rem;
@@ -501,6 +501,8 @@ body {
     background-color: white;
     border-radius: 0.5rem;
     overflow: hidden;
+    gap: 6px;
+    padding: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 

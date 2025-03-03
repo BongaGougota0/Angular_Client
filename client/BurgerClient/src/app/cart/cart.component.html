@@ -1,8 +1,10 @@
+
+<app-nav></app-nav>
 <body>
     <div class="tab-container">
         <div class="tabs">
-            <div (click)="showTab('cart-page')">Shopping Cart</div>
-            <div (click)="showTab('checkout-page')">Checkout</div>
+            <button class="switch-tab" (click)="showTab('cart-page')">Shopping Cart</button>
+            <button class="switch-tab" (click)="showTab('checkout-page')">Checkout</button>
         </div>
     </div>
 
